@@ -1,0 +1,977 @@
+[33mcommit 22f0ed2ae5208fb3ad0eaf9cfe69969f2137e06b[m[33m ([m[1;36mHEAD -> [m[1;32m0.8[m[33m)[m
+Author: Raul Ortiz <canguro3d@gmail.com>
+Date:   Sun Aug 2 20:15:22 2020 -0400
+
+    initial comit
+
+[33mcommit 787bb2d5f8950ccc94d5ca3aaf9692ead7bc4a7a[m
+Author: Raul Ortiz <canguro3d@gmail.com>
+Date:   Sun Aug 2 08:52:33 2020 -0400
+
+    first commit
+
+[33mcommit 9cffb23c2d48d47bb67df78ea1164738b41e8c9d[m[33m ([m[1;33mtag: v0.8.7.5[m[33m)[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Mon Jan 12 16:46:39 2015 -1000
+
+    Litecoin v0.8.7.5
+
+[33mcommit fb92215a0924403c7e89ae34ef03aa45a9249792[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Mon Jan 12 16:42:03 2015 -1000
+
+    Litecoin: Upgrade to openssl-1.0.1k
+
+[33mcommit af4beb8e700bc5c91978cba7fa1abee71de0d101[m
+Author: Wladimir J. van der Laan <laanwj@gmail.com>
+Date:   Mon Jan 12 11:05:04 2015 +0100
+
+    Improve robustness of DER recoding code
+    
+    Add some defensive programming on top of #5634.
+    
+    This copies the respective OpenSSL code in ECDSA_verify in
+    OpenSSL pre-1.0.1k (e.g. https://github.com/openssl/openssl/blob/OpenSSL_1_0_1j/crypto/ecdsa/ecs_vrf.c#L89)
+    more closely.
+    
+    As reported by @sergiodemianlerner.
+    
+    Bitcoin Github-Pull: #5640
+    Rebased-From: c6b7b29f232c651f898eeffb93f36c8f537c56d2
+
+[33mcommit 95479ca7f635a3343710bcb021c637783ec8d7e1[m
+Author: Cory Fields <cory-nospam-@coryfields.com>
+Date:   Fri Jan 9 20:53:19 2015 -1000
+
+    consensus: guard against openssl's new strict DER checks
+    
+    New versions of OpenSSL will reject non-canonical DER signatures. However,
+    it'll happily decode them. Decode then re-encode before verification in order
+    to ensure that it is properly consumed.
+    
+    Rebased-from: 488ed32f2ada1d1dd108fc245d025c4d5f252783
+    
+    fail immediately on an empty signature
+    
+    Rebased-from: 8dccba6a45db0466370726ed462b9da2eae43bce
+
+[33mcommit c1e46ab3a90bd90b9092761214e841b165d4dbc8[m[33m ([m[1;33mtag: v0.8.7.4[m[33m)[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Mon Sep 15 23:50:58 2014 -1000
+
+    Litecoin v0.8.7.4
+
+[33mcommit 52b3c6d66b323969bbd5fdc5886eb57b6c960765[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Mon Sep 15 23:48:02 2014 -1000
+
+    Litecoin: Lockin v2 blocks at 710k mainnet, 400k testnet
+
+[33mcommit e77aede12236e7dff5c4e20e7c682c7dd70742c6[m[33m ([m[1;33mtag: v0.8.7.3[m[33m)[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Thu Sep 11 15:21:54 2014 -1000
+
+    Litecoin v0.8.7.3
+
+[33mcommit 304477779fd8b146889bb8a358f83c1dbe44998e[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Thu Sep 11 15:20:54 2014 -1000
+
+    Litecoin: Release notes for 0.8.7.3
+
+[33mcommit c1d70885c252146f26be1f97cc332aa3850f9032[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Tue Sep 9 18:50:48 2014 -1000
+
+    Litecoin: Upgrade to openssl-1.0.1i
+
+[33mcommit ea4717af7449e35654e64e6f03463021ce930d5b[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Thu Sep 11 15:06:24 2014 -1000
+
+    Litecoin: Lock in v2 blocks at height 700000
+
+[33mcommit 57ab38f589b9873d1c27b41c8946fea97eb13d2a[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Thu Sep 11 14:25:33 2014 -1000
+
+    Litecoin: Checkpoint at block 638902
+
+[33mcommit 5dfe402720013fafa4b6f8f5348a636b834c0f64[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Wed Sep 10 20:14:52 2014 -1000
+
+    Litecoin: Reduce DEFAULT_MAX_ORPHAN_TRANSACTIONS to 25
+
+[33mcommit e0199e9ae84265761c2d0c9b5e40c868b6b58822[m
+Author: Gavin Andresen <gavinandresen@gmail.com>
+Date:   Wed Sep 10 14:08:03 2014 -0400
+
+    Store fewer orphan tx by default, add -maxorphantx option
+    
+    There is no reason to store thousands of orphan transactions;
+    normally an orphan's parents will either be broadcast or
+    mined reasonably quickly.
+    
+    This pull drops the maximum number of orphans from 10,000 down
+    to 100, and adds a command-line option (-maxorphantx) that is
+    just like -maxorphanblocks to override the default.
+    
+    Rebased-from: aa3c697e90c02d5797a59a7bfb1ecac6fbd918cf
+
+[33mcommit 056353a2e319f20120ca970c84f53751b4ddb312[m
+Author: Jeff Garzik <jgarzik@bitpay.com>
+Date:   Tue Sep 9 09:26:52 2014 +0200
+
+    Avoid returning many "inv" orphans
+    
+    Rebased-from: 540ac4514dbe4e077917bad1750768218ef5f9cf
+
+[33mcommit 4f7e47a64e79690a564812bfb9efcea0ffcf82c1[m
+Author: Wladimir J. van der Laan <laanwj@gmail.com>
+Date:   Wed Sep 10 04:59:31 2014 -1000
+
+    Limit CNode::mapAskFor
+    
+    Tighten resource constraints on CNode.
+    
+    Rebased-From: d4168c82bef0d86fd254a9d993906a09f5fd7fc0 for 0.8
+
+[33mcommit 826cd8b909cbd0442884f4a003716381037f997f[m
+Author: Gavin Andresen <gavinandresen@gmail.com>
+Date:   Tue Sep 9 14:01:11 2014 -0400
+
+    Fix crashing bug caused by orphan(s) with duplicate prevout.hash
+    
+    Rebased-From: def2fdb
+    Rebased-By: Wladimir J. van der Laan
+
+[33mcommit f8d9593ce076e6e568f896e247d58a0eb7accf86[m
+Author: Wladimir J. van der Laan <laanwj@gmail.com>
+Date:   Mon Sep 8 17:37:26 2014 +0200
+
+    Avoid repeated lookups in mapOrphanTransactions and mapOrphanTransactionsByPrev
+    
+    Rebased-From: 89d91f6
+    Rebased-By: Wladimir J. van der Laan <laanwj@gmail.com>
+
+[33mcommit 85a4b6da554aaad4211e0a8221ab9c95e090989d[m
+Author: Wladimir J. van der Laan <laanwj@gmail.com>
+Date:   Tue Aug 12 07:54:09 2014 +0200
+
+    Don't poll showmyip.com, it doesn't exist anymore
+    
+    Fixes #4679.
+    
+    This leaves us with only one candidate, checkip.dyndns.org.
+    GetMyExternalIP should be phased out as soon as possible.
+    
+    Rebased-from: c33b983903c64d88a2aef24da1827b86aadce596
+
+[33mcommit 91b6a2cd53bb43e69fb54e2cc26aee25c193febe[m
+Author: pooler <pooler@litecoinpool.org>
+Date:   Fri Sep 12 04:23:30 2014 +0200
+
+    Litecoin: update pnSeed array
+
+[33mcommit fab1907372397423e2debb44416385dc53ffd079[m[33m ([m[1;33mtag: v0.8.7.2[m[33m)[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Fri Jun 13 11:36:21 2014 -1000
+
+    Litecoin v0.8.7.2
+
+[33mcommit cc924b775c04326e3695d897739d6f791fd76b26[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Fri Jun 13 11:28:56 2014 -1000
+
+    Litecoin: Checkpoint at block 585010
+
+[33mcommit dabb4df74564f8837234b7c11049c6bf0476802d[m
+Merge: f91b455f5 c2cf47946
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Fri Jun 13 10:50:25 2014 -1000
+
+    Merge pull request #159 from whitj00/patch-1
+    
+    Changed old bitcoin links
+
+[33mcommit f91b455f5917c0b751897e3afdd435e539694237[m
+Merge: ccd9a1f5f 73f892b59
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Fri Jun 13 10:49:41 2014 -1000
+
+    Merge pull request #162 from linki/fix/openssl-1.0.1h
+    
+    gitian: upgrade to openssl-1.0.1h for CVE-2014-0224
+
+[33mcommit 73f892b5907a41af0800158ac676ede61eaf98ce[m
+Author: Martin Linkhorst <m.linkhorst@gmail.com>
+Date:   Sat Jun 7 18:12:09 2014 +0200
+
+    upgrade to openssl-1.0.1h for CVE-2014-0224
+
+[33mcommit c2cf47946aefa4b799343be39bb740ff0b38c75e[m
+Author: whitj00 <whitj00@users.noreply.github.com>
+Date:   Sat May 31 22:46:20 2014 -0700
+
+    Changed old bitcoin links
+
+[33mcommit ccd9a1f5f72235244886d108f014d40d2d6c7bd5[m
+Author: pooler <pooler@litecoinpool.org>
+Date:   Tue Apr 22 22:37:24 2014 +0200
+
+    Update testnet DNS seeds
+
+[33mcommit aa77ae3a8c31b7bada91e53d451172f01405ce51[m[33m ([m[1;33mtag: v0.8.7.1[m[33m)[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Sat Apr 19 01:43:29 2014 -1000
+
+    Litecoin v0.8.7.1
+
+[33mcommit cbe869e15396df1975e08abd32736474b17207b0[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Fri Apr 18 20:55:16 2014 -1000
+
+    Revert "RPC: prevent crash with walletpassphrase"
+    
+    This crash seemed to have never happened in 0.8.x, and we are missing the later commit
+    in a8db31c83d6a43e07f741f7f61b1bf0df87621c7 so it seems better to just revert this.
+    
+    This reverts commit 036a69c13c06670b46d3c02cb47e3fc7b2487854.
+
+[33mcommit 9ec7b25cd63e127f75368023078832541d591421[m
+Author: seikochan <j.s.ishigami@gmail.com>
+Date:   Fri Apr 18 14:49:41 2014 -1000
+
+    Litecoin: Update more copyright notices.
+
+[33mcommit 6ce2f0b2fb4d8a58e86919b25d86a917a6f8808f[m[33m ([m[1;33mtag: v0.8.6.9[m[33m)[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Wed Apr 9 01:20:21 2014 -1000
+
+    Litecoin v0.8.6.9
+
+[33mcommit 41fa6245259bb1edc226c9b49b548d23a6627fc1[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Tue Apr 8 23:06:33 2014 -1000
+
+    Litecoin: Upgrade openssl, qt, miniupnpc, zlib, libpng, qrencode
+
+[33mcommit 06e78495d588c5f7d8cc56b6eb379fc9c46880c5[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Thu Apr 3 22:03:45 2014 -1000
+
+    Litecoin: Checkpoint at block 541794
+
+[33mcommit 09137b47e40bbc0ebdd4a8c2cc807c45c7c09abb[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Fri Mar 28 03:04:04 2014 -1000
+
+    getnormalizedtxid now explains itself.
+
+[33mcommit bc7bc9d75171d3c66f5d6c27af68526671449aeb[m
+Author: Pieter Wuille <sipa@ulyssis.org>
+Date:   Mon Feb 10 12:23:33 2014 +0100
+
+    Add normalized transaction hash
+    
+    Rebased-from: e7853a91cf646a6a4701158d148f036924575a97
+    Rebased-by:   Warren Togami <wtogami@gmail.com>
+    
+    Original code from https://github.com/bitcoin/bitcoin/pull/3656
+    
+    Warning
+    =======
+    This patch was rejected from Bitcoin Core and must be considered experimental.
+    Theoretically it is compatible with the de facto standard as utilized by
+    blockchain.info and a few vendors.
+
+[33mcommit bb85fc84771dc6bf40875debee68c83201842b95[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Wed Mar 26 18:32:11 2014 -1000
+
+    Litecoin: reject fee > 1 LTC in sendrawtransaction
+
+[33mcommit 70313dd1e7518d410dac30db4906aac4846520a7[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Wed Mar 26 18:28:43 2014 -1000
+
+    Litecoin: settxfee label in LTC
+
+[33mcommit 55929d483b2afb8eea268472a5fdbaea71b6dfcd[m
+Author: Wladimir J. van der Laan <laanwj@gmail.com>
+Date:   Fri Feb 21 16:31:49 2014 +0100
+
+    Remove "conflicted" as transaction category.
+    
+    We were losing information about sent/received by overriding the
+    category in case of a conflicted transaction.
+    
+    Hence, remove the "conflicted" category.
+    
+    Conflicted status of a transaction can still be determined by looking
+    for confirmations<0.
+    
+    Rebased-from: b77ecd66b6b19921c98422bf70a39c4338c2f8b9 0.8.x
+
+[33mcommit fc1426bc0a689b44c6ad93468e65a97962414449[m
+Author: Pieter Wuille <pieter.wuille@gmail.com>
+Date:   Tue Sep 24 00:48:00 2013 +0200
+
+    Add HasCanonicalPushes(), and use it in IsStandardTx
+    
+    Conflicts:
+            src/script.cpp
+            src/script.h
+    
+    Rebased-from: b8ee034b9f47b562932ba21cd0334d803f77ec98 0.8.x
+
+[33mcommit 9b8b8075df8d041ba6b3115652b5a6f08972c23b[m
+Author: Wladimir J. van der Laan <laanwj@gmail.com>
+Date:   Sat Feb 15 10:38:06 2014 +0100
+
+    qt: Add option to (not) spend unconfirmed change
+    
+    - Add a wallet tab to options dialog
+    - Move fee setting to wallet tab
+    - Add new setting to set -nospendzeroconfchange from UI
+    
+    Conflicts:
+            src/qt/optionsmodel.cpp
+            src/qt/optionsmodel.h
+    
+    Conflicts:
+            src/qt/forms/optionsdialog.ui
+            src/qt/optionsmodel.h
+    
+    Rebased-from: 391cf691d5eee2934ed0e2e2b59bd99987c394a5 0.8.x
+
+[33mcommit 9ae42ca79bf3db09812524e8ef6caa665505f315[m
+Author: Luke Dashjr <luke-jr+git@utopios.org>
+Date:   Mon Mar 24 01:48:50 2014 +0000
+
+    Bump copyright years to 2014 for changed files
+    
+    Rebased-from: 0de199f4b52774afd6af583db9962705abbfa98a 0.8.x
+
+[33mcommit 1222b1b59ce8c3869bb9f1b48022b0462f109576[m
+Author: Gavin Andresen <gavinandresen@gmail.com>
+Date:   Wed Feb 12 13:43:07 2014 -0500
+
+    Handle "conflicted" transactions properly
+    
+    Extend CMerkleTx::GetDepthInMainChain with the concept of
+    a "conflicted" transaction-- a transaction generated by the wallet
+    that is not in the main chain or in the mempool, and, therefore,
+    will likely never be confirmed.
+    
+    GetDepthInMainChain() now returns -1 for conflicted transactions
+    (0 for unconfirmed-but-in-the-mempool, and >1 for confirmed).
+    
+    This makes getbalance, getbalance '*', and listunspent all agree when there are
+    mutated transactions in the wallet.
+    
+    Before:
+     listunspent: one 49BTC output
+     getbalance: 96 BTC (change counted twice)
+     getbalance '*': 46 BTC (spends counted twice)
+    
+    After: all agree, 49 BTC available to spend.
+    
+    Conflicts:
+            src/qt/walletmodel.cpp
+            src/wallet.cpp
+    
+    Conflicts:
+            src/wallet.cpp
+    
+    Rebased-from: 07986591be1610f3a209f15755dabad14322f16c 0.8.x
+
+[33mcommit 441f09f263237274e6a6cdb55c417873fdd22556[m
+Author: b6393ce9-d324-4fe1-996b-acf82dbc3d53 <m8r-emkdvd@mailinator.com>
+Date:   Wed Feb 12 05:41:32 2014 +0000
+
+    If requested, actually treat uncomfirmed change as being uncomfirmed
+    
+    This commit strengthens 1bbca249b202c4802cc2c4d4de4a26e6392b4d92 by updating the CWalletTx::IsConfirmed() function.
+    
+    If (bSpendZeroConfChange==false), then IsConfirmed() should actually treat unconfirmed change as being unconfirmed.
+    
+    Rebased-from: cd46fbf38e9a518633c254381209ed05410bc280
+
+[33mcommit 3a67c1ff27aaf6a18ffe629ba7c9d2b762fcd320[m
+Author: Peter Todd <pete@petertodd.org>
+Date:   Sun Jan 26 21:50:15 2014 -0500
+
+    Partial: Fix off-by-one errors in use of IsFinalTx()
+    
+    Conflicts:
+            src/main.cpp
+            src/miner.cpp
+            src/qt/transactiondesc.cpp
+            src/qt/transactionrecord.cpp
+    
+    Rebased-from: 3f25f26edcc41b22130c5845024b86a9b1aa6183 0.8.x
+
+[33mcommit d2ee3aecbede598b72458fae3ef381d3a0b6c159[m
+Author: Wladimir J. van der Laan <laanwj@gmail.com>
+Date:   Thu Dec 12 10:12:27 2013 +0100
+
+    qt: add missing cs_wallet lock in AddressTableModel::setData
+    
+    duplicate check in AddressTableModel::setData accesses
+    wallet data structure as well as SetAddressBook without proper LOCK, fix this.
+    
+    Conflicts:
+            src/qt/addresstablemodel.cpp
+    
+    Rebased-from: 72378a3b67c559310f8047a622ee109850f80e59 0.8.x
+
+[33mcommit 6a51fcf1bd3b4dda9dbd276a1e342b2a4531b34f[m
+Author: Gregory Maxwell <greg@xiph.org>
+Date:   Wed Aug 28 15:41:46 2013 -0700
+
+    [raw] reject insanely high fees by default in sendrawtransaction
+    
+    There have been several incidents where mainnet experimentation with
+     raw transactions  resulted in insane fees.  This is hard to prevent
+     in the raw transaction api because the inputs may not be known.
+     Since sending doesn't work if the inputs aren't known, we can catch
+     it there.
+    
+    This rejects fees > than 10000 * nMinRelayTxFee or 1 BTC with the
+     defaults and can be overridden with a bool at the rpc.
+    
+    Conflicts:
+            src/main.cpp
+            src/main.h
+            src/rpcrawtransaction.cpp
+    
+    Rebased-from: 6349de20f90f046aefa9eaae0de8e3faf11527fa 0.8.x
+
+[33mcommit 6b7c937114258acef77b2f2541edc9eb73a9fff9[m
+Author: Wladimir J. van der Laan <laanwj@gmail.com>
+Date:   Tue Feb 11 12:49:33 2014 +0100
+
+    Add option to avoid spending unconfirmed change
+    
+    Conflicts:
+            src/init.cpp
+            src/wallet.cpp
+            src/wallet.h
+    
+    Rebased-from: 86d40cab2725e758f4ddaf1e1149f0ab897df110 0.8.x
+
+[33mcommit c1c35358fbdc6cd9e77a7c08c62b8ea82aa79e28[m
+Author: Wladimir J. van der Laan <laanwj@gmail.com>
+Date:   Mon Jan 27 10:31:22 2014 +0100
+
+    Fix `getaddednodeinfo` RPC call with dns=false
+    
+    The getaddednodeinfo RPC call, when invoked with the dns flag set to
+    false, returns a malformed JSON object with duplicate keys.
+    
+    Change this to return an array of objects with one key as
+    shown in the help message.
+    
+    Fixes #3581.
+    
+    Rebased-from: a41825be5762ff36dcf0d89c20b95572af30c6bb 0.8.x
+
+[33mcommit 7e1d5ca8944ec6b129244206860c39454dd03ec0[m
+Author: Wladimir J. van der Laan <laanwj@gmail.com>
+Date:   Tue Jan 28 09:38:10 2014 +0100
+
+    Add check for valid keys in `importprivkey`
+    
+    The base58 armoring was checked, but not the resulting private key,
+    which could be out of range. Fix this by adding a check.
+    
+    Conflicts:
+            src/rpcdump.cpp
+    
+    Conflicts:
+            src/rpcdump.cpp
+    
+    Rebased-from: b403ab80ab39d41a6f965479cdf878cd8e58a399 0.8.x
+
+[33mcommit 56646670e1a834739dd939e35416f065e101b428[m
+Author: Wladimir J. van der Laan <laanwj@gmail.com>
+Date:   Thu Jan 23 12:31:54 2014 +0100
+
+    qt: Fix richtext detection hang issue on very old Qt versions
+    
+    Alternative implementation. Thanks to @awoland for the original.
+    Fixes #3486.
+    
+    Rebased-from: 90a28680bd8b24800428b301f7bf6cbf534de2ca 0.8.x
+
+[33mcommit 7f85c107367ebf1c4057bccf4d4e39ae7f8f6d16[m
+Author: Luke Dashjr <luke-jr+git@utopios.org>
+Date:   Wed Feb 12 18:50:45 2014 +0000
+
+    Bugfix: Undefine _FORTIFY_SOURCE before redefining it, to avoid warnings on compilers that define it by default
+    
+    Rebased-from: 2b5514138ab0b4e7fd1cbebe77852d41d09ca38d 0.8.x
+
+[33mcommit 5860707b6ca36cf4bf8164a2316ce281a6ddb327[m
+Author: Wladimir J. van der Laan <laanwj@gmail.com>
+Date:   Mon Dec 16 17:17:39 2013 +0100
+
+    Don't create empty transactions when reading corrupted wallet
+    
+    The current transaction loading code is not exception safe.
+    An exception during deserialization causes an empty transaction
+    to be left behind in the wallet.
+    
+    Fix this by building the transaction separately and adding
+    it only to the wallet at the end.
+    
+    Fixes #3333.
+    
+    Rebased-from: 3127d6caf46e2e96fc701b2d44ca28c4b9d7717a 0.8.x
+
+[33mcommit dab55190ece3770d2cb6336a29d7308d1ab2e917[m
+Author: Wladimir J. van der Laan <laanwj@gmail.com>
+Date:   Mon Dec 23 07:16:56 2013 +0100
+
+    Explicitly ensure that wallet is unlocked in `importprivkey`
+    
+    This makes for a more useful error reply (fixes #957).
+    
+    Rebased-from: 4175de73d954a02c9f57f603e63e0d688ddfeed2 0.8.x
+
+[33mcommit 5a79068b5aeca439fc7ef08846b7b36175c0c600[m
+Author: regergregregerrge <regergregregerrge@oxymail.de>
+Date:   Wed Dec 11 04:58:06 2013 +0100
+
+    Update build-osx.md
+    
+    Conflicts:
+            doc/build-osx.md
+    
+    Rebased-from: faa5b51468ab1f8d3637c14fe39e72cb92cd24ea 0.8.x
+
+[33mcommit a8f8323fa9b369f8473511f1c2864ddcac997572[m
+Author: Micha <michagogo@server.fake>
+Date:   Thu Dec 5 19:26:40 2013 -0500
+
+    Change release-process.md to sign release tags
+    
+    Conflicts:
+            doc/release-process.md
+    
+    Rebased-from: b586637108dbb7cfcd8f6fa6d74d6a7768eee021 0.8.x
+
+[33mcommit 4e0048e45476097d45b1f4bc00a2be85a6ef754a[m
+Author: Gregory Maxwell <greg@xiph.org>
+Date:   Mon Dec 2 11:33:44 2013 -0800
+
+    Partial: Sanitize assert usage and refuse to compile with NDEBUG.
+    
+    There were quite a few places where assert() was used with side effects,
+     making operation with NDEBUG non-functional.  This commit fixes all the
+     cases I know about, but also adds an  #error on NDEBUG because the code
+     is untested without assertions and may still have vulnerabilities if
+     used without assert.
+    
+    Conflicts:
+            src/key.cpp
+            src/main.cpp
+            src/wallet.cpp
+    
+    Rebased-from: 2e0c4da3fb1ce78dca1b3db723cf095a94f2f371 0.8.x
+
+[33mcommit 3d72da2d36437a2a7e698787fb93c987e29e0a17[m
+Author: Wladimir J. van der Laan <laanwj@gmail.com>
+Date:   Mon Nov 11 13:47:19 2013 +0100
+
+    doc: replace DOS with MSYS shell to be more consistent
+    
+    A plain DOS window doesn't have the right path settings, whereas
+    the MSYS shell window does.
+    
+    Conflicts:
+        doc/build-msw.md
+    
+    Rebased-from: 51e3e0909eb8567cde3fe1be0badbc266cb4cc6a 0.8.x
+
+[33mcommit 9eaaa43bc301671af28640fdbf76b817038e847c[m
+Author: Wladimir J. van der Laan <laanwj@gmail.com>
+Date:   Mon Nov 4 16:20:43 2013 +0100
+
+    qt: add license header to source files
+    
+    Closes #839
+    
+    Conflicts:
+            src/qt/addressbookpage.cpp
+            src/qt/guiutil.cpp
+            src/qt/intro.cpp
+            src/qt/intro.h
+            src/qt/macnotificationhandler.h
+            src/qt/optionsdialog.cpp
+            src/qt/optionsmodel.cpp
+            src/qt/paymentrequestplus.cpp
+            src/qt/paymentrequestplus.h
+            src/qt/paymentserver.cpp
+            src/qt/receivecoinsdialog.cpp
+            src/qt/receivecoinsdialog.h
+            src/qt/receiverequestdialog.cpp
+            src/qt/receiverequestdialog.h
+            src/qt/trafficgraphwidget.cpp
+            src/qt/trafficgraphwidget.h
+            src/qt/walletmodeltransaction.cpp
+            src/qt/walletmodeltransaction.h
+    
+    Rebased-from: c70289eefe66f72cb3133ff603c808b700cbae5f 0.8.x
+
+[33mcommit c847e6fe32ced6050123ae546acd8caf447ce83a[m
+Author: Peter Todd <pete@petertodd.org>
+Date:   Thu Oct 24 04:52:16 2013 -0400
+
+    Show short scriptPubKeys correctly
+    
+    Previously bitcoin-qt's -debug transaction info was showing CTxOut([error])
+    
+    It is valid for a scriptPubKey to be any size, for example simply
+    OP_RETURN is valid and can be used to destroy a TXOUT to mining fees.
+    
+    Conflicts:
+        src/core.cpp
+    
+    Rebased-from: 5d37b9db291cf60d3a1b4a15d00ef00baa7d9f4e 0.8.x
+
+[33mcommit c3df36c4414a6830f3a4cfcaa840811ae8c90422[m
+Author: Gavin Andresen <gavinandresen@gmail.com>
+Date:   Tue Oct 29 11:16:27 2013 +1000
+
+    Bug fix: CDataStream::GetAndClear() when nReadPos > 0
+    
+    Changed CDataStream::GetAndClear() to use the most obvious
+    get get and clear instead of a tricky swap().
+    
+    Added a unit test for CDataStream insert/erase/GetAndClear.
+    
+    Note: GetAndClear() is not performance critical, it is used only
+    by the send-a-message-to-the-network code. Bug was not noticed
+    before now because the send-a-message code never erased from the
+    stream.
+    
+    Rebased-from: b56b10252f8f5374cbe750178e57460b4aeaeeef 0.8.x
+
+[33mcommit 354ba60384e3baaae4ca52be5be819fe36b98dd7[m
+Author: Philip Kaufmann <phil.kaufmann@t-online.de>
+Date:   Wed Oct 23 15:12:28 2013 +0200
+
+    bitcoingui: show main window (if hidden) on modal messages
+    
+    Conflicts:
+            src/qt/bitcoingui.cpp
+    
+    Conflicts:
+            src/qt/bitcoingui.cpp
+    
+    Rebased-from: ad47c2848db573ea6656bbc16bd49000166dfd16 0.8.x
+
+[33mcommit 036a69c13c06670b46d3c02cb47e3fc7b2487854[m
+Author: Philip Kaufmann <phil.kaufmann@t-online.de>
+Date:   Wed Oct 23 16:19:49 2013 +0200
+
+    RPC: prevent crash with walletpassphrase
+    
+    - fix crash with walletpassphrase by checking if RPC server is running and
+      give a friendly error message how to fix this (fixes #3100)
+    - add 3 new RPCErrorCodes RPC_SERVER_NOT_STARTED
+    - use the new code where needed / missing
+    
+    Upstream: 4315ec1a722a290ba2bb2b86080a787f6174e2a2
+    
+    Conflicts:
+            src/rpcnet.cpp
+            src/rpcwallet.cpp
+    
+    Rebased-from: a80b01cdf6323dae55020933ad1f5ea52f64b0bc 0.8.x
+
+[33mcommit 473ac8f6764bfd69746378a21e6ce264be554344[m
+Author: Luke Dashjr <luke-jr+git@utopios.org>
+Date:   Sat Sep 22 03:22:34 2012 +0000
+
+    Bugfix: Supress "address" key in transaction details, when the destination isn't recognized
+    
+    Previously, it would pass corrupt/random through base58.
+    
+    Rebased-from: 33a3cfaf0fe7ab8f23b815e678fe72f2a95fb61f 0.8.x
+
+[33mcommit 70d89d963ccabdfad4043d26d34b6a86987be656[m
+Author: Luke Dashjr <luke-jr+git@utopios.org>
+Date:   Sat Sep 22 03:20:14 2012 +0000
+
+    Bugfix: Avoid trying to parse outputs that aren't relevant to CWalletTx::GetAmounts
+    
+    This fixes a warning when an output we aren't concerned with can't be parsed.
+    
+    Rebased-from: a8c1df93c87f089bfb80d959724a65b714b2aaca 0.8.x
+
+[33mcommit a89b42858645cc6565ea925ff020ed0881702ac6[m
+Author: Gavin Andresen <gavinandresen@gmail.com>
+Date:   Tue Oct 15 15:30:20 2013 +1000
+
+    Avoid core dump if rpc port is in use.
+    
+    The cleanup code needs to check for NULL rpcworkers thread group.
+    
+    Rebased-from: b7f6e156462a24129078252a4e957a5be622ebcc 0.8.x
+
+[33mcommit dc4cd268f521ab7ae503692eb2c56f581087ef9f[m
+Author: fanquake <fanquake@gmail.com>
+Date:   Thu Sep 26 15:53:08 2013 +0800
+
+    Update Qt 4.8.3 download link
+    
+    Conflicts:
+            contrib/gitian-descriptors/README
+    
+    Rebased-from: 68adfc0079916c1916405f7466db769af1fe8855 0.8.x
+
+[33mcommit 4e1ffda0ae2a135ae1c3b00581e3234e846f9902[m
+Author: Philip Kaufmann <phil.kaufmann@t-online.de>
+Date:   Sat Oct 5 13:15:50 2013 +0200
+
+    Bitcoin-Qt: prevent stuck/unusable debug window on exit
+    
+    - when closing the client with an open debug window, that window could
+      become stuck/unsuable (it was still shown wherea the main window was
+      hidden already)
+    - fix this by hiding the debug window, when quitting the the client
+    
+    Rebased-from: 3f8241c65539ceae7dc858f6f85acf3c2c58253b 0.8.x
+
+[33mcommit ab86ca03a8b1f22d223d14a74c9a249fdeb843c1[m
+Author: Philip Kaufmann <phil.kaufmann@t-online.de>
+Date:   Thu Oct 3 15:03:33 2013 +0200
+
+    fix #3049 by changing comment for CNetAddr::IsRFC4193()
+    
+    Rebased-from: 71888bf121a5abbfb89a693b9f2cb99935d3cfad 0.8.x
+
+[33mcommit e55c96f38bd17982331421ca08252f22e6229828[m
+Author: Philip Kaufmann <phil.kaufmann@t-online.de>
+Date:   Tue Oct 1 09:47:16 2013 +0200
+
+    misc small spelling/indentation fixes
+    
+    Rebased-from: efde29e7f6b917bb4807157536dca400512ca99d 0.8.x
+
+[33mcommit 5fcec450789405e05150c45b2401d775c3563131[m
+Author: Philip Kaufmann <phil.kaufmann@t-online.de>
+Date:   Sat Sep 14 11:44:12 2013 +0200
+
+    Bitcoin-Qt: BitcoinGUI::message() updates/fixes
+    
+    - ensure message boxes are shown in center of our main window, not
+      centered on the users desktop
+    - always prefer user supplied titles for message boxes over the functions
+      defaults (fixes a bug, where transaction info messages did not contain
+      information, if it was incoming or outgoing)
+    
+    Rebased-from: ca3c4d8d61d67f29c5db2b526cbfb5a4e7d9b727 0.8.x
+
+[33mcommit a3144627a07e721ee0120caff935e39fd93fbe8b[m
+Author: Pieter Wuille <pieter.wuille@gmail.com>
+Date:   Thu Sep 19 00:01:36 2013 +0200
+
+    Fix minor unit test memory leaks
+    
+    Rebased-from: 5d8c41f7b5eb1a103290f8c935127addeb781f73 0.8.x
+
+[33mcommit f80351c3215014935c5836f7d90cc21af5fc0cdf[m
+Author: Gregory Maxwell <greg@xiph.org>
+Date:   Thu Sep 5 17:54:31 2013 -0700
+
+    Make settxfee clear that units are btc/kb.
+    
+    Rebased-from: fffab7e45061aba3a5f345e0fc22a8584bcb012d 0.8.x
+
+[33mcommit 10d589b7f2f8746d3d186b9d7e37b4de7f6464ea[m
+Merge: f389e65c8 570f4b03e
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Thu Apr 3 21:58:44 2014 -1000
+
+    Merge pull request #128 from petertoddltc/add-checkpoints-to-testnet
+    
+    Add checkpoints to testnet
+
+[33mcommit f389e65c8dcb1544a023caff33da41c71fe61a80[m
+Author: pooler <pooler@litecoinpool.org>
+Date:   Mon Mar 31 23:21:12 2014 +0200
+
+    Add testnet DNS seed from xurious.com
+
+[33mcommit 8201f6c1fdc30d67ecc9f2ea51e331bd285cb27b[m
+Merge: 85f303d88 1c8eddbdd
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Sat Mar 15 16:33:25 2014 -1000
+
+    Merge pull request #138 from rnicoll/master-0.8
+    
+    Correct reference to Bitcoin in French locale
+
+[33mcommit 1c8eddbdd8f9ae4fef5de50384b023a57c95a22f[m
+Author: Ross Nicoll <jrn@jrn.me.uk>
+Date:   Sat Mar 15 10:59:25 2014 +0000
+
+    Corrected reference to Bitcoin in French locale.
+
+[33mcommit 85f303d883ffff35238eaea5174b780c950c0ae4[m
+Merge: 5a0d47cf5 523f31b80
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Sat Feb 15 00:13:43 2014 -1000
+
+    Merge pull request #124 from simondlr/gitignore_leveldb_fix
+    
+    Fix .gitignore to properly include leveldb Makefile.
+
+[33mcommit 570f4b03eba23abb3c09045a673105d956103847[m
+Author: Peter Todd <pete@petertodd.org>
+Date:   Mon Feb 10 19:55:09 2014 -0500
+
+    Litecoin: Add checkpoints to testnet
+
+[33mcommit 523f31b80357ef52ca2ff126221e866f3af0d273[m
+Author: Simon de la Rouviere <simon@delarouviere.com>
+Date:   Thu Jan 30 12:03:31 2014 +0200
+
+    Fix .gitignore to properly include leveldb Makefile.
+
+[33mcommit 5a0d47cf59c60ab88c740be6df2cc7e0f02d5187[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Fri Jan 10 02:39:33 2014 -1000
+
+    qt-win32.yml: remove redundant unzip dep
+
+[33mcommit fe7b87a9761d9819bc2dcb6796b46b17fa775a5c[m[33m ([m[1;33mtag: v0.8.6.2[m[33m)[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Thu Jan 9 15:38:53 2014 -1000
+
+    Litecoin v0.8.6.2
+
+[33mcommit bacaa46b0a522c863cbda66c44d1746cc683474d[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Thu Jan 9 15:29:46 2014 -1000
+
+    Litecoin: Release Notes for 0.8.6.2
+
+[33mcommit 5b17393890ed189b823012f4b7418407b0cf47a6[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Mon Jan 6 16:41:50 2014 -1000
+
+    Upgrade gitian win32 to boost-1.55.
+    
+    Fixes issue where all network activity just stops.
+
+[33mcommit d781651e4cb4e49e01abeb6bc579a069d77c1f10[m
+Author: Nikolay Belikov <nikolay@belikov.me>
+Date:   Wed Dec 25 18:33:11 2013 +0400
+
+    Litecoin: More straightforward SSE2 detection
+    
+    - Move CPU capabilities detection from init.cpp to scrypt.cpp
+    - scrypt_1024_1_1_256_sp is defined as a macro: no need to check for SSE2
+      every time it is used
+    - Test correctness of both scrypt-generic and scrypt-sse2
+
+[33mcommit 4a96ed803936e6ccc25d46a6587b064441cccd96[m
+Author: Mr.Coder <jim0203@gmail.com>
+Date:   Sat Dec 7 17:09:32 2013 +0800
+
+    Update makefile.osx to prevent some compiling errors under osx 10.9
+    
+    osx 10.9 changed the default stdlib to libc++. You may need to compile with libstdc++ to prevent some errors. At the same time, boost should be compiled use a cxxflag '-stdlib=libstdc++'
+
+[33mcommit e955fa89710650c1210a1f9ae1bab735e441e509[m
+Author: Sejntcior <sejntcik@gmail.com>
+Date:   Wed Jan 1 23:27:50 2014 +0100
+
+    Fix QT5 compatibility for Coin Control
+    
+    Adapted from https://github.com/bitcoin/bitcoin/pull/3267
+
+[33mcommit a921cd224c70b628ca4efcccee96bcbc30e218f0[m
+Author: Matthieu Caneill <matthieu.caneill42@gmail.com>
+Date:   Mon Dec 16 01:53:32 2013 +0100
+
+    Add: requirement libupnpc-dev for Debian, in readme-qt
+    
+    This library is needed on Debian and Ubuntu, unless the flag
+    to omit UPnP support is set.
+
+[33mcommit 50f246e747f4bba49c6d92ad54c0e97059a2966e[m
+Author: Barry Allard <barry.allard@gmail.com>
+Date:   Sat Jan 4 03:38:39 2014 -0800
+
+    Litecoin: s/Bit/Lite/-coin.app
+
+[33mcommit 375d8e9a4e3320afab29d32f0320df1797b59441[m
+Author: Barry Allard <barry.allard@gmail.com>
+Date:   Mon Dec 16 20:37:13 2013 -0800
+
+    [osx] update contrib/homebrew/bitcoin.qt.pro.patch from old OpenSSL -> modern OpenSSL via homebrew
+
+[33mcommit 983aa861dd6477eedf00c4ad8d3d70cf453e1df2[m
+Author: rolf vreijdenberger <rolf@vreijdenberger.nl>
+Date:   Sun Dec 15 23:20:27 2013 +0100
+
+    Litecoin: Coin Control cosmetic s/Bitcoin/Litecoin/
+
+[33mcommit afbb2a32c9dc1096fce4a39ab61fce6e2ba41ebd[m
+Author: rolf vreijdenberger <rolf@vreijdenberger.nl>
+Date:   Sun Dec 15 23:20:27 2013 +0100
+
+    Litecoin: bitrpc.py cosmetic s/Bitcoin/Litecoin/
+
+[33mcommit 88e2a2e8988b89f905145bdc9af8c34028d0af90[m[33m ([m[1;33mtag: v0.8.6.1[m[33m)[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Sat Oct 26 16:25:05 2013 -1000
+
+    Litecoin v0.8.6.1
+
+[33mcommit 7cc3c0a9c018a6647d16937c0cc69375c25e3d4a[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Tue Nov 26 14:45:34 2013 -1000
+
+    Litecoin: Reduce default mintxfee to 0.001
+
+[33mcommit 3ba60fe89898f42b09db740984deaaff5b505469[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Thu Dec 5 22:42:54 2013 -1000
+
+    Litecoin: Release Notes for 0.8.6.1
+
+[33mcommit 9f8986dec43d51dcdaa379cbe73e930496f041bd[m
+Author: pooler <pooler@litecoinpool.org>
+Date:   Fri Dec 6 02:29:23 2013 +0100
+
+    Litecoin: Update pnSeed array
+
+[33mcommit def3c9e53b20815c8eef0aef7c9315cdd4a889c6[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Thu Nov 28 16:00:09 2013 -1000
+
+    Litecoin: Reduce Dust thresholds by 10x
+    
+    DUST_SOFT_LIMIT of 0.001 means a penalty of an additional mintxfee
+    is charged for each output smaller than 0.001.  This is a key
+    behavioral disincentive in Litecoin's anti-spam design.
+    
+    DUST_HARD_LIMIT of 0.00001 means inputs smaller than this size are
+    ignored by the wallet, not available to coin selection and
+    effectively do not exist.  This too discourages spam.
+
+[33mcommit 3d538f0a92bd370b940b9e452998590b6814d9b8[m
+Author: Warren Togami <wtogami@gmail.com>
+Date:   Wed Sep 18 12:04:29 2013 +1000
+
+    Litecoin: Reduce high priority tx size limit to 5KB (from 10KB)
+    
+    This is the first step in making 
